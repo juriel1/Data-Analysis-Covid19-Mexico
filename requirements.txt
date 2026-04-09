@@ -36,3 +36,4 @@ tabulate==0.10.0
 tornado==6.5.5
 traitlets==5.14.3
 wcwidth==0.6.0
+duckdb==1.5.1
