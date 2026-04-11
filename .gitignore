@@ -4,7 +4,9 @@
 *.xls
 *.json
 
-/DATA/
+/DATA/Bronce
+/DATA/Silver
+/DATA/Gold
 /COVID19MEXICO*/
 /dimensiones_finales/
 
