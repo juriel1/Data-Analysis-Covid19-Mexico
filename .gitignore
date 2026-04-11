@@ -1,7 +1,5 @@
 *.csv
 *.parquet
-*.xlsx
-*.xls
 *.json
 
 /DATA/Bronce
