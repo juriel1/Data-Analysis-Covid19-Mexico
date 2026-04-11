@@ -1,0 +1,37 @@
+table 'Catálogo SECTOR'
+	lineageTag: 52903a97-cf4f-4e33-aae7-1d522463ed24
+
+	column CLAVE
+		dataType: int64
+		formatString: 0
+		lineageTag: a70a3b3c-dd10-416d-8d79-44dfbfdf6c40
+		summarizeBy: sum
+		sourceColumn: CLAVE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DESCRIPCIÓN
+		dataType: string
+		lineageTag: 8e07ab5b-d229-4423-a7ec-96345bf7489c
+		summarizeBy: none
+		sourceColumn: DESCRIPCIÓN
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Catálogo SECTOR' = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\Users\jurie\Documents\Data-Analysis-Covid19-Mexico\DICCIONARIOS\240708 Catalogos.xlsx"), null, true),
+				    #"Catálogo SECTOR_Sheet" = Origen{[Item="Catálogo SECTOR",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(#"Catálogo SECTOR_Sheet", [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"CLAVE", Int64.Type}, {"DESCRIPCIÓN", type text}, {"Column3", type any}, {"Column4", type any}, {"Column5", type any}, {"Column6", type any}, {"Column7", type any}, {"Column8", type any}}),
+				    #"Columnas quitadas" = Table.RemoveColumns(#"Tipo cambiado",{"Column3", "Column4", "Column5", "Column6", "Column7", "Column8"}),
+				    #"Filas en blanco eliminadas" = Table.SelectRows(#"Columnas quitadas", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null})))
+				in
+				    #"Filas en blanco eliminadas"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

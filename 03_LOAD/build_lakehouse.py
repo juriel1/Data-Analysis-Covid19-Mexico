@@ -26,9 +26,9 @@ con = duckdb.connect(db_path_str)
 # 4. Inyección SQL
 con.execute(f"""
 CREATE OR REPLACE VIEW fact_covid AS
-SELECT * FROM read_parquet('{fact_path_str}', hive_partitioning = true);
+SELECT * FROM read_parquet('{fact_path_str}', hive_partitioning = true, union_by_name = true);
 """)
-print(" -> Vista 'fact_covid' vinculada (Formato POSIX).")
+print(" -> Vista 'fact_covid' vinculada con tolerancia a Schema Drift.")
 
 dimensiones = [
     'DIM_Geografico_residencia',

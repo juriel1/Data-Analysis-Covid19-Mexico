@@ -1,0 +1,37 @@
+table 'Catálogo RESULTADO_LAB'
+	lineageTag: 02c302da-ce6f-4fc7-9a37-f13dc5b3c689
+
+	column CLAVE
+		dataType: int64
+		formatString: 0
+		lineageTag: 5c872252-2382-4b1a-8224-e995d3ca1604
+		summarizeBy: sum
+		sourceColumn: CLAVE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DESCRIPCIÓN
+		dataType: string
+		lineageTag: 5fb18a79-874c-44b3-a36b-82bc2d9916ee
+		summarizeBy: none
+		sourceColumn: DESCRIPCIÓN
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Catálogo RESULTADO_LAB' = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\Users\jurie\Documents\Data-Analysis-Covid19-Mexico\DICCIONARIOS\240708 Catalogos.xlsx"), null, true),
+				    #"Catálogo RESULTADO_LAB_Sheet" = Origen{[Item="Catálogo RESULTADO_LAB",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(#"Catálogo RESULTADO_LAB_Sheet", [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"CLAVE", Int64.Type}, {"DESCRIPCIÓN", type text}, {"Column3", type any}, {"Esta variable dejó de ser incluída en el corte de base del día 2024-07-08, fue", type text}}),
+				    #"Columnas quitadas" = Table.RemoveColumns(#"Tipo cambiado",{"Column3", "Esta variable dejó de ser incluída en el corte de base del día 2024-07-08, fue"}),
+				    #"Filas en blanco eliminadas" = Table.SelectRows(#"Columnas quitadas", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null})))
+				in
+				    #"Filas en blanco eliminadas"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

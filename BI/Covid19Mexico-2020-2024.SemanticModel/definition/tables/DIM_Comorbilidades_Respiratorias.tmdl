@@ -1,0 +1,127 @@
+table DIM_Comorbilidades_Respiratorias
+	lineageTag: 5f94859d-a852-4e12-9bf6-cc3a1b0b7941
+
+	column ID_DIM_COMORBILIDADES_RESPIRATORIAS
+		dataType: int64
+		formatString: 0
+		lineageTag: 9fa4d910-a832-4101-a895-324120c933ff
+		summarizeBy: none
+		sourceColumn: ID_DIM_COMORBILIDADES_RESPIRATORIAS
+
+		annotation SummarizationSetBy = Automatic
+
+	column INTUBADO
+		dataType: double
+		lineageTag: f9e0cea0-85d4-49ec-a4d8-6ab79d1f06d5
+		summarizeBy: none
+		sourceColumn: INTUBADO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column NEUMONIA
+		dataType: double
+		lineageTag: 0a2af310-3829-4db0-aaad-6fe29a39404a
+		summarizeBy: none
+		sourceColumn: NEUMONIA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EPOC
+		dataType: double
+		lineageTag: 562c2840-3ec2-4a43-9147-276b9d95b43d
+		summarizeBy: none
+		sourceColumn: EPOC
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ASMA
+		dataType: double
+		lineageTag: 8a4b96eb-b9a1-45c6-94e0-24afb17218de
+		summarizeBy: none
+		sourceColumn: ASMA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TABAQUISMO
+		dataType: double
+		lineageTag: fd6d3dd3-074b-4c04-aa51-fb95117ba3ce
+		summarizeBy: none
+		sourceColumn: TABAQUISMO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DESC_INTUBADO
+		dataType: double
+		lineageTag: f228abbe-22eb-4be5-b923-d956d4626227
+		summarizeBy: none
+		sourceColumn: DESC_INTUBADO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DESC_NEUMONIA
+		dataType: double
+		lineageTag: fe70e82d-81d8-425c-af41-1ea172c8b26b
+		summarizeBy: none
+		sourceColumn: DESC_NEUMONIA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DESC_EPOC
+		dataType: double
+		lineageTag: bc19cc88-0f16-46ee-9963-748249520c2b
+		summarizeBy: none
+		sourceColumn: DESC_EPOC
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DESC_ASMA
+		dataType: double
+		lineageTag: 377e2378-25ec-4ee5-bf5c-be965e23c0f9
+		summarizeBy: none
+		sourceColumn: DESC_ASMA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DESC_TABAQUISMO
+		dataType: double
+		lineageTag: 5525f2fe-8285-42c7-ad4b-766fc78743d5
+		summarizeBy: none
+		sourceColumn: DESC_TABAQUISMO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition DIM_Comorbilidades_Respiratorias = m
+		mode: import
+		source =
+				let
+				    Origen = Odbc.DataSource("dsn=DSN_Covid_Lakehouse", [HierarchicalNavigation=true]),
+				    covid_lakehouse_Database = Origen{[Name="covid_lakehouse",Kind="Database"]}[Data],
+				    main_Schema = covid_lakehouse_Database{[Name="main",Kind="Schema"]}[Data],
+				    DIM_Comorbilidades_Respiratorias_Table = main_Schema{[Name="DIM_Comorbilidades_Respiratorias",Kind="Table"]}[Data]
+				in
+				    DIM_Comorbilidades_Respiratorias_Table
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

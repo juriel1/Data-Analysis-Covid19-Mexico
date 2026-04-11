@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Covid19Mexico-2020-2024"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "5dd20d2c-692f-432a-a2fe-63bffda65143"
+  }
+}

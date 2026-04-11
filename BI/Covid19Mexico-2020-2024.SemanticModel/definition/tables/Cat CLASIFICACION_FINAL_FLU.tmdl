@@ -1,0 +1,43 @@
+table 'Cat CLASIFICACION_FINAL_FLU'
+	lineageTag: 61a59f15-afb3-468f-97a1-bd993f7758cc
+
+	column CLAVE
+		dataType: int64
+		formatString: 0
+		lineageTag: 8c764c0e-115a-49d7-ae02-72713fed2490
+		summarizeBy: sum
+		sourceColumn: CLAVE
+
+		annotation SummarizationSetBy = Automatic
+
+	column CLASIFICACIÓN
+		dataType: string
+		lineageTag: 826b0734-6004-4b0c-8ca5-3660da2a7490
+		summarizeBy: none
+		sourceColumn: CLASIFICACIÓN
+
+		annotation SummarizationSetBy = Automatic
+
+	column DESCRIPCIÓN
+		dataType: string
+		lineageTag: af4f5738-836b-4e94-993a-ab920a59a6d9
+		summarizeBy: none
+		sourceColumn: DESCRIPCIÓN
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Cat CLASIFICACION_FINAL_FLU' = m
+		mode: import
+		source =
+				let
+				    Origen = Excel.Workbook(File.Contents("C:\Users\jurie\Documents\Data-Analysis-Covid19-Mexico\DICCIONARIOS\240708 Catalogos.xlsx"), null, true),
+				    #"Cat CLASIFICACION_FINAL_FLU_Sheet" = Origen{[Item="Cat CLASIFICACION_FINAL_FLU",Kind="Sheet"]}[Data],
+				    #"Encabezados promovidos" = Table.PromoteHeaders(#"Cat CLASIFICACION_FINAL_FLU_Sheet", [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"CLAVE", Int64.Type}, {"CLASIFICACIÓN", type text}, {"DESCRIPCIÓN", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+
