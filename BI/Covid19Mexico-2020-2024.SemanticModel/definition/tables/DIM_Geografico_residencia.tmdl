@@ -1,0 +1,67 @@
+table DIM_Geografico_residencia
+	lineageTag: 24913066-a49e-472b-9b07-c97d8251f5a5
+
+	column ID_DIM_GEOGRAFICO_RESIDENCIA
+		dataType: int64
+		formatString: 0
+		lineageTag: b3b8dca0-49f6-4a79-b768-36c6d8b304d3
+		summarizeBy: none
+		sourceColumn: ID_DIM_GEOGRAFICO_RESIDENCIA
+
+		annotation SummarizationSetBy = Automatic
+
+	column ENTIDAD_RES
+		dataType: double
+		lineageTag: 41606d40-1c61-46fc-8821-d537bf6fb4a9
+		summarizeBy: none
+		sourceColumn: ENTIDAD_RES
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MUNICIPIO_RES
+		dataType: double
+		lineageTag: 71a2901c-cd99-43b1-a206-331a3fd1e20b
+		summarizeBy: none
+		sourceColumn: MUNICIPIO_RES
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DESC_ENTIDAD_RES
+		dataType: double
+		lineageTag: 5c66520a-5e57-45b7-bb79-1b5d8c98108d
+		summarizeBy: none
+		sourceColumn: DESC_ENTIDAD_RES
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DESC_MUNICIPIO_RES
+		dataType: double
+		lineageTag: f2de27b1-8cc9-439d-a8e4-68c94c24f3ce
+		summarizeBy: none
+		sourceColumn: DESC_MUNICIPIO_RES
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition DIM_Geografico_residencia = m
+		mode: import
+		source =
+				let
+				    Origen = Odbc.DataSource("dsn=DSN_Covid_Lakehouse", [HierarchicalNavigation=true]),
+				    covid_lakehouse_Database = Origen{[Name="covid_lakehouse",Kind="Database"]}[Data],
+				    main_Schema = covid_lakehouse_Database{[Name="main",Kind="Schema"]}[Data],
+				    DIM_Geografico_residencia_Table = main_Schema{[Name="DIM_Geografico_residencia",Kind="Table"]}[Data]
+				in
+				    DIM_Geografico_residencia_Table
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

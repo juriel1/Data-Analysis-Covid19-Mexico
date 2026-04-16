@@ -1,0 +1,31 @@
+relationship 81a766ca-1afb-4f6f-8d71-5d0c8028a038
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_covid.FECHA_ACTUALIZACION
+	toColumn: LocalDateTable_5115502a-2532-426b-b9e1-d4d8b4e732f8.Date
+
+relationship 9ce2ad85-017f-4975-b2aa-80879914091c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_covid.FECHA_INGRESO
+	toColumn: LocalDateTable_eda5d274-78bc-49a2-9f51-069271327174.Date
+
+relationship 0e49822d-f7ef-4d15-b985-c55e2920c131
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_covid.FECHA_SINTOMAS
+	toColumn: LocalDateTable_d357e764-d215-4025-8bcd-75fdc90b7aef.Date
+
+relationship AutoDetected_692975cf-ed66-45a2-ba16-b3d79f9582ae
+	fromColumn: fact_covid.ID_DIM_GEOGRAFICO_RESIDENCIA
+	toColumn: DIM_Geografico_residencia.ID_DIM_GEOGRAFICO_RESIDENCIA
+
+relationship AutoDetected_e20d1b94-8bf7-4c4a-a2fc-241b7172cdd4
+	fromColumn: fact_covid.ID_DIM_DESCRIPCION_DEL_PACIENTE
+	toColumn: DIM_Descripcion_del_paciente.ID_DIM_DESCRIPCION_DEL_PACIENTE
+
+relationship AutoDetected_42443a79-cc88-46c9-8134-94b034fc5ce9
+	fromColumn: fact_covid.ID_DIM_COMORBILIDADES_RESPIRATORIAS
+	toColumn: DIM_Comorbilidades_Respiratorias.ID_DIM_COMORBILIDADES_RESPIRATORIAS
+
+relationship ea857826-e65b-6fb1-4c69-f24d621a3bc6
+	fromColumn: fact_covid.CLASIFICACION_FINAL_COVID
+	toColumn: 'Cat CLASIFICACION_FINAL_COVID'.CLAVE
+
