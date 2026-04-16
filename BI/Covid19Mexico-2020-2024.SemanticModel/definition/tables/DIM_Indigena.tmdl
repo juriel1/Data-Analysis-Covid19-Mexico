@@ -1,0 +1,87 @@
+table DIM_Indigena
+	lineageTag: 0f8392e7-159a-4b6d-af8e-d1d4dbb200b7
+
+	column ID_DIM_INDIGENA
+		dataType: int64
+		formatString: 0
+		lineageTag: 491f938b-c4e5-48dd-8ef1-694d2b26ace0
+		summarizeBy: none
+		sourceColumn: ID_DIM_INDIGENA
+
+		annotation SummarizationSetBy = Automatic
+
+	column HABLA_LENGUA_INDIG
+		dataType: double
+		lineageTag: 9ce27e2e-5710-40b4-85ab-cd38cc817916
+		summarizeBy: none
+		sourceColumn: HABLA_LENGUA_INDIG
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column INDIGENA
+		dataType: double
+		lineageTag: afca056e-57d6-439b-a6a7-081544b96099
+		summarizeBy: none
+		sourceColumn: INDIGENA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MIGRANTE
+		dataType: double
+		lineageTag: 6199c953-fc99-459e-90fb-727c756755de
+		summarizeBy: none
+		sourceColumn: MIGRANTE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DESC_HABLA_LENGUA_INDIG
+		dataType: double
+		lineageTag: 47286c56-171c-41be-9522-5a1f4e92fc6d
+		summarizeBy: none
+		sourceColumn: DESC_HABLA_LENGUA_INDIG
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DESC_INDIGENA
+		dataType: double
+		lineageTag: 621ee109-1eee-4feb-bd2c-88ecd5f996ef
+		summarizeBy: none
+		sourceColumn: DESC_INDIGENA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DESC_MIGRANTE
+		dataType: double
+		lineageTag: 410c1f37-6a7d-4944-847f-cc44d7636cb2
+		summarizeBy: none
+		sourceColumn: DESC_MIGRANTE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition DIM_Indigena = m
+		mode: import
+		source =
+				let
+				    Origen = Odbc.DataSource("dsn=DSN_Covid_Lakehouse", [HierarchicalNavigation=true]),
+				    covid_lakehouse_Database = Origen{[Name="covid_lakehouse",Kind="Database"]}[Data],
+				    main_Schema = covid_lakehouse_Database{[Name="main",Kind="Schema"]}[Data],
+				    DIM_Indigena_Table = main_Schema{[Name="DIM_Indigena",Kind="Table"]}[Data]
+				in
+				    DIM_Indigena_Table
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

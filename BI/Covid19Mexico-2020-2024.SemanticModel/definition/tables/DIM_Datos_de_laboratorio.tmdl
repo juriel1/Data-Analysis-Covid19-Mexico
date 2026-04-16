@@ -1,0 +1,107 @@
+table DIM_Datos_de_laboratorio
+	lineageTag: d27005e5-415b-46ef-b4ea-a5023591c775
+
+	column ID_DIM_DATOS_DE_LABORATORIO
+		dataType: int64
+		formatString: 0
+		lineageTag: 8f4b4586-90cf-476c-840f-89deef0d8b7c
+		summarizeBy: none
+		sourceColumn: ID_DIM_DATOS_DE_LABORATORIO
+
+		annotation SummarizationSetBy = Automatic
+
+	column TOMA_MUESTRA_LAB
+		dataType: double
+		lineageTag: d297392a-f077-4689-850e-119a6194c17e
+		summarizeBy: sum
+		sourceColumn: TOMA_MUESTRA_LAB
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RESULTADO_LAB
+		dataType: double
+		lineageTag: 75f56312-ecc4-47b6-9390-2de59f1cb17c
+		summarizeBy: none
+		sourceColumn: RESULTADO_LAB
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CLASIFICACION_FINAL_COVID
+		dataType: double
+		lineageTag: 6ce3299c-7da7-4f03-b320-35ce2b700e73
+		summarizeBy: none
+		sourceColumn: CLASIFICACION_FINAL_COVID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CLASIFICACION_FINAL_FLU
+		dataType: double
+		lineageTag: 10d77087-088d-4dc2-84a2-d3de7470c2b9
+		summarizeBy: none
+		sourceColumn: CLASIFICACION_FINAL_FLU
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DESC_TOMA_MUESTRA_LAB
+		dataType: double
+		lineageTag: 5dd96957-5f96-4e14-8da2-f07e3447d82e
+		summarizeBy: sum
+		sourceColumn: DESC_TOMA_MUESTRA_LAB
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DESC_RESULTADO_LAB
+		dataType: double
+		lineageTag: 0faaeaa9-e31a-4f38-bc5f-1f9112ceaec7
+		summarizeBy: sum
+		sourceColumn: DESC_RESULTADO_LAB
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DESC_CLASIFICACION_FINAL_COVID
+		dataType: double
+		lineageTag: b8e657d7-5bbb-4011-a65f-b922a37571f1
+		summarizeBy: count
+		sourceColumn: DESC_CLASIFICACION_FINAL_COVID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DESC_CLASIFICACION_FINAL_FLU
+		dataType: double
+		lineageTag: c7798b43-3b07-47c4-b3fc-6059762e7fbb
+		summarizeBy: sum
+		sourceColumn: DESC_CLASIFICACION_FINAL_FLU
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition DIM_Datos_de_laboratorio = m
+		mode: import
+		source =
+				let
+				    Origen = Odbc.DataSource("dsn=DSN_Covid_Lakehouse", [HierarchicalNavigation=true]),
+				    covid_lakehouse_Database = Origen{[Name="covid_lakehouse",Kind="Database"]}[Data],
+				    main_Schema = covid_lakehouse_Database{[Name="main",Kind="Schema"]}[Data],
+				    DIM_Datos_de_laboratorio_Table = main_Schema{[Name="DIM_Datos_de_laboratorio",Kind="Table"]}[Data]
+				in
+				    DIM_Datos_de_laboratorio_Table
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

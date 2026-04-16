@@ -1,0 +1,63 @@
+table DIM_Geografico_Nacionalidad
+	lineageTag: a8a041a7-3b48-4066-9121-8aea46dfe5c7
+
+	column ID_DIM_GEOGRAFICO_NACIONALIDAD
+		dataType: int64
+		formatString: 0
+		lineageTag: dcba0766-5fce-4512-be4d-144bf799484c
+		summarizeBy: none
+		sourceColumn: ID_DIM_GEOGRAFICO_NACIONALIDAD
+
+		annotation SummarizationSetBy = Automatic
+
+	column NACIONALIDAD
+		dataType: double
+		lineageTag: 97b89152-a8ff-4cd5-9ed7-7a59ff695e46
+		summarizeBy: none
+		sourceColumn: NACIONALIDAD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PAIS_NACIONALIDAD
+		dataType: string
+		lineageTag: d41985e0-ab72-4ea6-8096-882d58fbc16b
+		summarizeBy: none
+		sourceColumn: PAIS_NACIONALIDAD
+
+		annotation SummarizationSetBy = Automatic
+
+	column PAIS_ORIGEN
+		dataType: string
+		lineageTag: f89c980c-9b54-49e7-96c3-256aa56a59f2
+		summarizeBy: none
+		sourceColumn: PAIS_ORIGEN
+
+		annotation SummarizationSetBy = Automatic
+
+	column DESC_NACIONALIDAD
+		dataType: double
+		lineageTag: ae6da615-bf2c-4851-90fc-5a56aa221a1e
+		summarizeBy: sum
+		sourceColumn: DESC_NACIONALIDAD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition DIM_Geografico_Nacionalidad = m
+		mode: import
+		source =
+				let
+				    Origen = Odbc.DataSource("dsn=DSN_Covid_Lakehouse", [HierarchicalNavigation=true]),
+				    covid_lakehouse_Database = Origen{[Name="covid_lakehouse",Kind="Database"]}[Data],
+				    main_Schema = covid_lakehouse_Database{[Name="main",Kind="Schema"]}[Data],
+				    DIM_Geografico_Nacionalidad_Table = main_Schema{[Name="DIM_Geografico_Nacionalidad",Kind="Table"]}[Data]
+				in
+				    DIM_Geografico_Nacionalidad_Table
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

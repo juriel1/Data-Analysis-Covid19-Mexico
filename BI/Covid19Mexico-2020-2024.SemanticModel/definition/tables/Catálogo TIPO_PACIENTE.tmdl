@@ -5,7 +5,7 @@ table 'Catálogo TIPO_PACIENTE'
 		dataType: int64
 		formatString: 0
 		lineageTag: 296fc7e9-5df0-4e6c-a20e-95a7f7f04731
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: CLAVE
 
 		annotation SummarizationSetBy = Automatic
