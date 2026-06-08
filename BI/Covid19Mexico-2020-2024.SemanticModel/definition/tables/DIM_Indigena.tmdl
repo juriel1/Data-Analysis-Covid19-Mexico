@@ -40,36 +40,6 @@ table DIM_Indigena
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	column DESC_HABLA_LENGUA_INDIG
-		dataType: double
-		lineageTag: 47286c56-171c-41be-9522-5a1f4e92fc6d
-		summarizeBy: none
-		sourceColumn: DESC_HABLA_LENGUA_INDIG
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column DESC_INDIGENA
-		dataType: double
-		lineageTag: 621ee109-1eee-4feb-bd2c-88ecd5f996ef
-		summarizeBy: none
-		sourceColumn: DESC_INDIGENA
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column DESC_MIGRANTE
-		dataType: double
-		lineageTag: 410c1f37-6a7d-4944-847f-cc44d7636cb2
-		summarizeBy: none
-		sourceColumn: DESC_MIGRANTE
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	partition DIM_Indigena = m
 		mode: import
 		source =

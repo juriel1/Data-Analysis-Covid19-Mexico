@@ -50,46 +50,6 @@ table DIM_Datos_de_laboratorio
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	column DESC_TOMA_MUESTRA_LAB
-		dataType: double
-		lineageTag: 5dd96957-5f96-4e14-8da2-f07e3447d82e
-		summarizeBy: sum
-		sourceColumn: DESC_TOMA_MUESTRA_LAB
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column DESC_RESULTADO_LAB
-		dataType: double
-		lineageTag: 0faaeaa9-e31a-4f38-bc5f-1f9112ceaec7
-		summarizeBy: sum
-		sourceColumn: DESC_RESULTADO_LAB
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column DESC_CLASIFICACION_FINAL_COVID
-		dataType: double
-		lineageTag: b8e657d7-5bbb-4011-a65f-b922a37571f1
-		summarizeBy: count
-		sourceColumn: DESC_CLASIFICACION_FINAL_COVID
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column DESC_CLASIFICACION_FINAL_FLU
-		dataType: double
-		lineageTag: c7798b43-3b07-47c4-b3fc-6059762e7fbb
-		summarizeBy: sum
-		sourceColumn: DESC_CLASIFICACION_FINAL_FLU
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	partition DIM_Datos_de_laboratorio = m
 		mode: import
 		source =

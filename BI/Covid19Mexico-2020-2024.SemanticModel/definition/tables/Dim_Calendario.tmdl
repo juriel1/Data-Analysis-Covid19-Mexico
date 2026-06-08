@@ -1,0 +1,77 @@
+table Dim_Calendario
+	lineageTag: a76f2133-e339-4a72-8169-28dbcb5a32bc
+
+	column Date
+		formatString: General Date
+		lineageTag: cc2748b7-02ba-415e-a9c6-0ac2a166941f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variación
+			isDefault
+			relationship: 010b89c8-bb23-4754-b461-03dac60e6f36
+			defaultHierarchy: LocalDateTable_24d45067-071b-4dba-afdb-0c989dafb1d7.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Año
+		formatString: 0
+		lineageTag: cf76c915-9607-49e9-9cb7-d27767d01c3e
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Año]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mes Nro'
+		formatString: 0
+		lineageTag: d871160c-00c6-4ce9-8613-da8b7b3ec911
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Mes Nro]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mes
+		lineageTag: df4f1b34-8485-4066-8c79-dea040d70ace
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mes]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Trimestre
+		lineageTag: 2708b787-8b97-4d50-83e3-5cb529aadeec
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Trimestre]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Día Semana'
+		lineageTag: 8db5c62a-f3ae-4ff5-8c33-f1a7b47dbff9
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Día Semana]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Calendario = calculated
+		mode: import
+		source =
+				
+				VAR FechaInicio = DATE(2020, 1, 1)
+				VAR FechaFin = DATE(2024, 12, 31)
+				RETURN
+				ADDCOLUMNS (
+				    CALENDAR(FechaInicio, FechaFin),
+				    "Año", YEAR([Date]),
+				    "Mes Nro", MONTH([Date]),
+				    "Mes", FORMAT([Date], "MMMM", "es-MX"),
+				    "Trimestre", "T" & QUARTER([Date]),
+				    "Día Semana", FORMAT([Date], "dddd", "es-MX")
+				)
+
+	annotation PBI_Id = d123fc99dcd64a55ab278ee24826e605
+

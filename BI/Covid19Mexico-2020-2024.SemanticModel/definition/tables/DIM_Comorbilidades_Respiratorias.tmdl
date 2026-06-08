@@ -60,56 +60,6 @@ table DIM_Comorbilidades_Respiratorias
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	column DESC_INTUBADO
-		dataType: double
-		lineageTag: f228abbe-22eb-4be5-b923-d956d4626227
-		summarizeBy: none
-		sourceColumn: DESC_INTUBADO
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column DESC_NEUMONIA
-		dataType: double
-		lineageTag: fe70e82d-81d8-425c-af41-1ea172c8b26b
-		summarizeBy: none
-		sourceColumn: DESC_NEUMONIA
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column DESC_EPOC
-		dataType: double
-		lineageTag: bc19cc88-0f16-46ee-9963-748249520c2b
-		summarizeBy: none
-		sourceColumn: DESC_EPOC
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column DESC_ASMA
-		dataType: double
-		lineageTag: 377e2378-25ec-4ee5-bf5c-be965e23c0f9
-		summarizeBy: none
-		sourceColumn: DESC_ASMA
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column DESC_TABAQUISMO
-		dataType: double
-		lineageTag: 5525f2fe-8285-42c7-ad4b-766fc78743d5
-		summarizeBy: none
-		sourceColumn: DESC_TABAQUISMO
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	partition DIM_Comorbilidades_Respiratorias = m
 		mode: import
 		source =

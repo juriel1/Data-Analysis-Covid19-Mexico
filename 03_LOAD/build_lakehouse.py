@@ -26,7 +26,12 @@ con = duckdb.connect(db_path_str)
 # 4. Inyección SQL
 con.execute(f"""
 CREATE OR REPLACE VIEW fact_covid AS
-SELECT * FROM read_parquet('{fact_path_str}', hive_partitioning = true, union_by_name = true);
+SELECT 
+    *,
+    TRY_CAST(FECHA_INGRESO AS DATE) AS FECHA_INGRESO_DATE,
+    TRY_CAST(FECHA_SINTOMAS AS DATE) AS FECHA_SINTOMAS_DATE,
+    TRY_CAST(FECHA_DEF AS DATE) AS FECHA_DEF_DATE
+FROM read_parquet('{fact_path_str}', hive_partitioning = true, union_by_name = true);
 """)
 print(" -> Vista 'fact_covid' vinculada con tolerancia a Schema Drift.")
 
@@ -45,11 +50,21 @@ dimensiones = [
 ]
 
 for dim in dimensiones:
-    # IMPORTANTE: Asegúrate de que las carpetas 'DIMENSIONES' y los nombres de archivo coincidan en mayúsculas/minúsculas
     dim_path = raiz_proyecto / 'DATA' / 'Gold' / 'DIMENSIONES' / f'{dim}.parquet'
+    dim_path_str = dim_path.as_posix()
     
-    con.execute(f"CREATE OR REPLACE TABLE {dim} AS SELECT * FROM read_parquet('{dim_path.as_posix()}');")
-    print(f" -> Tabla '{dim}' importada exitosamente.")
+    info_columnas = con.execute(f"DESCRIBE SELECT * FROM read_parquet('{dim_path_str}');").fetchall()
+    
+    columnas_limpias = [row[0] for row in info_columnas if not row[0].startswith('DESC_')]
+    
+    columnas_sql = ", ".join(columnas_limpias)
+    
+    con.execute(f"""
+        CREATE OR REPLACE TABLE {dim} AS 
+        SELECT {columnas_sql} 
+        FROM read_parquet('{dim_path_str}');
+    """)
+    print(f" -> Tabla '{dim}' importada exitosamente (Columnas DESC_ purgadas).")
 
 con.close()
 print("\n[Éxito] Lakehouse generado. Compatible con Windows y Linux.")

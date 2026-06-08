@@ -60,56 +60,6 @@ table DIM_Comorbilidades_de_presion
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	column DESC_DIABETES
-		dataType: double
-		lineageTag: c7fd4049-4c14-4928-8882-dac65d5aa836
-		summarizeBy: none
-		sourceColumn: DESC_DIABETES
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column DESC_INMUSUPR
-		dataType: double
-		lineageTag: fb533819-4667-4001-ab2b-aaa2729e7cc9
-		summarizeBy: none
-		sourceColumn: DESC_INMUSUPR
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column DESC_HIPERTENSION
-		dataType: double
-		lineageTag: b59f0cf4-f0ce-462c-824b-b2db5f11872f
-		summarizeBy: none
-		sourceColumn: DESC_HIPERTENSION
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column DESC_CARDIOVASCULAR
-		dataType: double
-		lineageTag: 7c356f58-0e7f-42e3-a475-ddd692bb023b
-		summarizeBy: none
-		sourceColumn: DESC_CARDIOVASCULAR
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column DESC_OBESIDAD
-		dataType: double
-		lineageTag: 8b5383bf-bd4d-4e7a-aca0-baff7fb55988
-		summarizeBy: none
-		sourceColumn: DESC_OBESIDAD
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	partition DIM_Comorbilidades_de_presion = m
 		mode: import
 		source =

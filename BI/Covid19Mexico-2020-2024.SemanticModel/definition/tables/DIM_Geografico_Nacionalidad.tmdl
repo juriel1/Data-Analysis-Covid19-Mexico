@@ -36,16 +36,6 @@ table DIM_Geografico_Nacionalidad
 
 		annotation SummarizationSetBy = Automatic
 
-	column DESC_NACIONALIDAD
-		dataType: double
-		lineageTag: ae6da615-bf2c-4851-90fc-5a56aa221a1e
-		summarizeBy: sum
-		sourceColumn: DESC_NACIONALIDAD
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	partition DIM_Geografico_Nacionalidad = m
 		mode: import
 		source =

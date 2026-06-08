@@ -1,6 +1,10 @@
 table fact_covid
 	lineageTag: 36310c93-73a1-4fb3-b926-d6de7ca875c5
 
+	measure Total_defunciones = CALCULATE(COUNTROWS(fact_covid),fact_covid[FECHA_DEF]<>"9999-99-99")
+		formatString: 0
+		lineageTag: b95415ec-eff2-4331-b3aa-777093147aaa
+
 	column FECHA_ACTUALIZACION
 		dataType: string
 		lineageTag: a460a5ba-4ef1-49a9-8a29-52bdb0d35d62
@@ -17,29 +21,14 @@ table fact_covid
 
 		annotation SummarizationSetBy = Automatic
 
-	column ORIGEN
-		dataType: int64
-		formatString: 0
-		lineageTag: 0e5738e0-e6d9-4e19-bd68-0b0c006c1830
-		summarizeBy: sum
-		sourceColumn: ORIGEN
-
-		annotation SummarizationSetBy = Automatic
-
-	column SECTOR
-		dataType: int64
-		formatString: 0
-		lineageTag: 007a61fe-dd6c-4967-9acf-000d4ff28dd9
-		summarizeBy: sum
-		sourceColumn: SECTOR
-
-		annotation SummarizationSetBy = Automatic
-
 	column FECHA_INGRESO
-		dataType: string
+		dataType: dateTime
+		formatString: General Date
 		lineageTag: 04d33bf8-7a00-4f50-9f68-a5b45875c14f
 		summarizeBy: none
 		sourceColumn: FECHA_INGRESO
+
+		changedProperty = DataType
 
 		annotation SummarizationSetBy = Automatic
 
@@ -58,56 +47,6 @@ table fact_covid
 		sourceColumn: FECHA_DEF
 
 		annotation SummarizationSetBy = Automatic
-
-	column OTRO_CASO
-		dataType: int64
-		lineageTag: bbe2692d-1261-4554-9839-f9b126dade7d
-		summarizeBy: sum
-		sourceColumn: OTRO_CASO
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column TOMA_MUESTRA_LAB
-		dataType: int64
-		lineageTag: 769306a6-4a1a-4437-9dde-0d10fc1b660e
-		summarizeBy: sum
-		sourceColumn: TOMA_MUESTRA_LAB
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column RESULTADO_LAB
-		dataType: int64
-		lineageTag: 8a558224-23b7-4745-b310-508ae9d9eb0a
-		summarizeBy: sum
-		sourceColumn: RESULTADO_LAB
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column CLASIFICACION_FINAL
-		dataType: double
-		lineageTag: 2472a789-36e3-45b8-946d-4536eef7ac70
-		summarizeBy: sum
-		sourceColumn: CLASIFICACION_FINAL
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column UCI
-		dataType: int64
-		lineageTag: fd8add56-8522-4869-9599-bc394f2222f0
-		summarizeBy: sum
-		sourceColumn: UCI
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column ID_DIM_GEOGRAFICO_INFORMACION_PACIENTE
 		dataType: int64
@@ -217,275 +156,6 @@ table fact_covid
 
 		annotation SummarizationSetBy = Automatic
 
-	column month
-		dataType: string
-		lineageTag: 527c1c69-2087-4654-9047-fd0750ddd7eb
-		summarizeBy: none
-		sourceColumn: month
-
-		annotation SummarizationSetBy = Automatic
-
-	column year
-		dataType: int64
-		formatString: 0
-		lineageTag: c87e534e-cb08-4429-9f5f-d7e4215f6851
-		summarizeBy: sum
-		sourceColumn: year
-
-		annotation SummarizationSetBy = Automatic
-
-	column ENTIDAD_UM
-		dataType: int64
-		formatString: 0
-		lineageTag: 9ebf98e5-6fc2-47aa-9edd-fc25ce9e3b91
-		summarizeBy: sum
-		sourceColumn: ENTIDAD_UM
-
-		annotation SummarizationSetBy = Automatic
-
-	column SEXO
-		dataType: int64
-		formatString: 0
-		lineageTag: 6921b38b-95e3-4cb1-8647-c8d548a265da
-		summarizeBy: sum
-		sourceColumn: SEXO
-
-		annotation SummarizationSetBy = Automatic
-
-	column ENTIDAD_NAC
-		dataType: int64
-		formatString: 0
-		lineageTag: 7b0dde56-0a20-4cec-a02b-0a1c763070ca
-		summarizeBy: sum
-		sourceColumn: ENTIDAD_NAC
-
-		annotation SummarizationSetBy = Automatic
-
-	column ENTIDAD_RES
-		dataType: int64
-		formatString: 0
-		lineageTag: c678fdfe-f3ad-4d6f-86d8-6ab1bd0c33b4
-		summarizeBy: sum
-		sourceColumn: ENTIDAD_RES
-
-		annotation SummarizationSetBy = Automatic
-
-	column MUNICIPIO_RES
-		dataType: int64
-		formatString: 0
-		lineageTag: 1981e41f-44bc-4075-b24a-661c289f0dd1
-		summarizeBy: sum
-		sourceColumn: MUNICIPIO_RES
-
-		annotation SummarizationSetBy = Automatic
-
-	column TIPO_PACIENTE
-		dataType: int64
-		formatString: 0
-		lineageTag: 4a8556a4-6a05-45b9-9088-01251b1b81a5
-		summarizeBy: sum
-		sourceColumn: TIPO_PACIENTE
-
-		annotation SummarizationSetBy = Automatic
-
-	column INTUBADO
-		dataType: int64
-		formatString: 0
-		lineageTag: b9a4606a-7ce4-4f09-81e7-9f6fe4441057
-		summarizeBy: sum
-		sourceColumn: INTUBADO
-
-		annotation SummarizationSetBy = Automatic
-
-	column NEUMONIA
-		dataType: int64
-		formatString: 0
-		lineageTag: 1cfff026-36ef-42d2-85a1-70ce0a6f2644
-		summarizeBy: sum
-		sourceColumn: NEUMONIA
-
-		annotation SummarizationSetBy = Automatic
-
-	column EDAD
-		dataType: int64
-		formatString: 0
-		lineageTag: e4af261e-7fee-46b4-bfc8-b074dd7669ce
-		summarizeBy: sum
-		sourceColumn: EDAD
-
-		annotation SummarizationSetBy = Automatic
-
-	column NACIONALIDAD
-		dataType: int64
-		formatString: 0
-		lineageTag: 50de8743-a361-4a08-b06f-c30094cb8135
-		summarizeBy: sum
-		sourceColumn: NACIONALIDAD
-
-		annotation SummarizationSetBy = Automatic
-
-	column EMBARAZO
-		dataType: int64
-		formatString: 0
-		lineageTag: 67f78124-0f81-493b-8fa6-4e3297a2780d
-		summarizeBy: sum
-		sourceColumn: EMBARAZO
-
-		annotation SummarizationSetBy = Automatic
-
-	column HABLA_LENGUA_INDIG
-		dataType: int64
-		formatString: 0
-		lineageTag: 92a58ca3-d535-4ca6-b366-351d334fc7d2
-		summarizeBy: sum
-		sourceColumn: HABLA_LENGUA_INDIG
-
-		annotation SummarizationSetBy = Automatic
-
-	column INDIGENA
-		dataType: int64
-		formatString: 0
-		lineageTag: 847309e6-8352-4653-817d-64f9dac33383
-		summarizeBy: sum
-		sourceColumn: INDIGENA
-
-		annotation SummarizationSetBy = Automatic
-
-	column DIABETES
-		dataType: int64
-		formatString: 0
-		lineageTag: db186c81-ccf3-4ba5-8e19-b730a174dd16
-		summarizeBy: sum
-		sourceColumn: DIABETES
-
-		annotation SummarizationSetBy = Automatic
-
-	column EPOC
-		dataType: int64
-		formatString: 0
-		lineageTag: 57f2a3a0-0b7b-4eb8-832a-b25ea2d52422
-		summarizeBy: sum
-		sourceColumn: EPOC
-
-		annotation SummarizationSetBy = Automatic
-
-	column ASMA
-		dataType: int64
-		formatString: 0
-		lineageTag: ce9514c3-bb76-46a4-af53-f76a83b43686
-		summarizeBy: sum
-		sourceColumn: ASMA
-
-		annotation SummarizationSetBy = Automatic
-
-	column INMUSUPR
-		dataType: int64
-		formatString: 0
-		lineageTag: 5583d366-3ba8-41a0-abf4-08460f5de67d
-		summarizeBy: sum
-		sourceColumn: INMUSUPR
-
-		annotation SummarizationSetBy = Automatic
-
-	column HIPERTENSION
-		dataType: int64
-		formatString: 0
-		lineageTag: 3155e9e6-5a26-4abb-91a0-8cb27bbc4b2e
-		summarizeBy: sum
-		sourceColumn: HIPERTENSION
-
-		annotation SummarizationSetBy = Automatic
-
-	column OTRA_COM
-		dataType: int64
-		formatString: 0
-		lineageTag: de3a6559-24b2-4a17-bb75-4cdc0267d25b
-		summarizeBy: sum
-		sourceColumn: OTRA_COM
-
-		annotation SummarizationSetBy = Automatic
-
-	column CARDIOVASCULAR
-		dataType: int64
-		formatString: 0
-		lineageTag: dea980b0-f9ab-405f-8aed-b3183487fc2b
-		summarizeBy: sum
-		sourceColumn: CARDIOVASCULAR
-
-		annotation SummarizationSetBy = Automatic
-
-	column OBESIDAD
-		dataType: int64
-		formatString: 0
-		lineageTag: a3f6ffd0-1325-46ed-a057-2ecafccb6315
-		summarizeBy: sum
-		sourceColumn: OBESIDAD
-
-		annotation SummarizationSetBy = Automatic
-
-	column RENAL_CRONICA
-		dataType: int64
-		formatString: 0
-		lineageTag: 44de7b32-eaf4-4023-b74a-b7f125d5d41f
-		summarizeBy: sum
-		sourceColumn: RENAL_CRONICA
-
-		annotation SummarizationSetBy = Automatic
-
-	column TABAQUISMO
-		dataType: int64
-		formatString: 0
-		lineageTag: 3fbee63a-0253-46a1-8c1a-53d8060d324d
-		summarizeBy: sum
-		sourceColumn: TABAQUISMO
-
-		annotation SummarizationSetBy = Automatic
-
-	column TOMA_MUESTRA_ANTIGENO
-		dataType: int64
-		formatString: 0
-		lineageTag: 06194851-fc3e-4a81-a87d-49681e787058
-		summarizeBy: sum
-		sourceColumn: TOMA_MUESTRA_ANTIGENO
-
-		annotation SummarizationSetBy = Automatic
-
-	column RESULTADO_ANTIGENO
-		dataType: int64
-		formatString: 0
-		lineageTag: d859aca5-e7a3-45a4-8dc2-eaae9bf0f68c
-		summarizeBy: sum
-		sourceColumn: RESULTADO_ANTIGENO
-
-		annotation SummarizationSetBy = Automatic
-
-	column MIGRANTE
-		dataType: int64
-		formatString: 0
-		lineageTag: 2d54ba09-88ad-458c-83bd-126d98599020
-		summarizeBy: sum
-		sourceColumn: MIGRANTE
-
-		annotation SummarizationSetBy = Automatic
-
-	column PAIS_NACIONALIDAD
-		dataType: int64
-		formatString: 0
-		lineageTag: 2efb9289-8213-4d4e-80f5-0fa1828153e2
-		summarizeBy: sum
-		sourceColumn: PAIS_NACIONALIDAD
-
-		annotation SummarizationSetBy = Automatic
-
-	column PAIS_ORIGEN
-		dataType: int64
-		formatString: 0
-		lineageTag: 7987edae-6e27-46a4-89a2-862780490a92
-		summarizeBy: sum
-		sourceColumn: PAIS_ORIGEN
-
-		annotation SummarizationSetBy = Automatic
-
 	column RESULTADO_PCR
 		dataType: int64
 		formatString: 0
@@ -513,6 +183,54 @@ table fact_covid
 
 		annotation SummarizationSetBy = Automatic
 
+	column FECHA_INGRESO_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: de93f6e6-82a8-4da3-bdae-2e5e9144474c
+		summarizeBy: none
+		sourceColumn: FECHA_INGRESO_DATE
+
+		variation Variación
+			isDefault
+			relationship: ff7b4a98-e424-402d-bccd-ccdc84274b11
+			defaultHierarchy: LocalDateTable_ac42842a-15cf-4563-b6d8-464073d38bb5.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column FECHA_SINTOMAS_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e91aec16-1468-4776-ab34-26358f44e6df
+		summarizeBy: none
+		sourceColumn: FECHA_SINTOMAS_DATE
+
+		variation Variación
+			isDefault
+			relationship: 5c0166e5-4f7d-4de4-a38f-50eb5ed866eb
+			defaultHierarchy: LocalDateTable_e196a8a3-3cab-4355-88a1-99777be175bf.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column FECHA_DEF_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 96540de6-b23a-4c0e-a2ae-dce78f2cfa37
+		summarizeBy: none
+		sourceColumn: FECHA_DEF_DATE
+
+		variation Variación
+			isDefault
+			relationship: 2e6299e0-64ac-4792-bb8b-d90976fe3fb3
+			defaultHierarchy: LocalDateTable_9fb96b51-d13d-4406-ab7e-be7832256da4.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
 	partition fact_covid = m
 		mode: import
 		source =
@@ -520,9 +238,10 @@ table fact_covid
 				    Origen = Odbc.DataSource("dsn=DSN_Covid_Lakehouse", [HierarchicalNavigation=true]),
 				    covid_lakehouse_Database = Origen{[Name="covid_lakehouse",Kind="Database"]}[Data],
 				    main_Schema = covid_lakehouse_Database{[Name="main",Kind="Schema"]}[Data],
-				    fact_covid_View = main_Schema{[Name="fact_covid",Kind="View"]}[Data]
+				    fact_covid_View = main_Schema{[Name="fact_covid",Kind="View"]}[Data],
+				    #"Columnas quitadas" = Table.RemoveColumns(fact_covid_View,{"INTUBADO", "NEUMONIA", "EDAD", "NACIONALIDAD", "EMBARAZO", "HABLA_LENGUA_INDIG", "INDIGENA", "DIABETES", "EPOC", "ASMA", "INMUSUPR", "HIPERTENSION", "OTRA_COM", "CARDIOVASCULAR", "OBESIDAD", "RENAL_CRONICA", "TABAQUISMO", "OTRO_CASO", "TOMA_MUESTRA_LAB", "RESULTADO_LAB", "TOMA_MUESTRA_ANTIGENO", "RESULTADO_ANTIGENO", "CLASIFICACION_FINAL", "MIGRANTE", "PAIS_NACIONALIDAD", "PAIS_ORIGEN", "UCI", "ORIGEN", "SECTOR", "ENTIDAD_UM", "SEXO", "ENTIDAD_NAC", "ENTIDAD_RES", "MUNICIPIO_RES", "TIPO_PACIENTE", "month", "year"})
 				in
-				    fact_covid_View
+				    #"Columnas quitadas"
 
 	annotation PBI_NavigationStepName = Navegación
 

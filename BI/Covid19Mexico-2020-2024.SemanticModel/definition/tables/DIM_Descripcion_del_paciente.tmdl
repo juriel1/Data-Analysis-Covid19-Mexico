@@ -40,26 +40,6 @@ table DIM_Descripcion_del_paciente
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	column DESC_SEXO
-		dataType: double
-		lineageTag: c440d170-b3c8-4b06-8c47-60433c1f00fc
-		summarizeBy: sum
-		sourceColumn: DESC_SEXO
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column DESC_TIPO_PACIENTE
-		dataType: double
-		lineageTag: 55016bdd-edf9-447d-9eed-7f25b8aee575
-		summarizeBy: sum
-		sourceColumn: DESC_TIPO_PACIENTE
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	partition DIM_Descripcion_del_paciente = m
 		mode: import
 		source =

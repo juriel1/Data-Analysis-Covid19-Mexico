@@ -13,6 +13,7 @@ table 'Catálogo de ENTIDADES'
 	column ENTIDAD_FEDERATIVA
 		dataType: string
 		lineageTag: e08e0e22-6a97-4de0-bf74-d3cfbd14078e
+		dataCategory: StateOrProvince
 		summarizeBy: none
 		sourceColumn: ENTIDAD_FEDERATIVA
 

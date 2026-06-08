@@ -30,26 +30,6 @@ table DIM_Geografico_informacion_paciente
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	column DESC_ENTIDAD_UM
-		dataType: double
-		lineageTag: 5a7f5a5b-35eb-4166-9af4-42def965d210
-		summarizeBy: none
-		sourceColumn: DESC_ENTIDAD_UM
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column DESC_ENTIDAD_NAC
-		dataType: double
-		lineageTag: 96ba64fd-8112-4c26-ad19-9185822f7cd8
-		summarizeBy: none
-		sourceColumn: DESC_ENTIDAD_NAC
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	partition DIM_Geografico_informacion_paciente = m
 		mode: import
 		source =

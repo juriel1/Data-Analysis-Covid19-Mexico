@@ -40,36 +40,6 @@ table DIM_Otras_caracteristicas_medicas
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	column DESC_EMBARAZO
-		dataType: double
-		lineageTag: 7cb1ff21-0618-4b4b-af7f-253657cc379c
-		summarizeBy: none
-		sourceColumn: DESC_EMBARAZO
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column DESC_RENAL_CRONICA
-		dataType: double
-		lineageTag: dc5942d0-6d0f-444b-ac93-7a53b068dfb0
-		summarizeBy: none
-		sourceColumn: DESC_RENAL_CRONICA
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column DESC_OTRA_COM
-		dataType: double
-		lineageTag: 0207af06-e5fc-44ac-9228-b600ad51b289
-		summarizeBy: none
-		sourceColumn: DESC_OTRA_COM
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	partition DIM_Otras_caracteristicas_medicas = m
 		mode: import
 		source =

@@ -90,3 +90,27 @@ relationship 8d99dea1-7c6d-6b86-3216-cddbcb19e2cc
 	fromColumn: DIM_Datos_de_laboratorio.RESULTADO_LAB
 	toColumn: 'Catálogo RESULTADO_LAB'.CLAVE
 
+relationship ff7b4a98-e424-402d-bccd-ccdc84274b11
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_covid.FECHA_INGRESO_DATE
+	toColumn: LocalDateTable_ac42842a-15cf-4563-b6d8-464073d38bb5.Date
+
+relationship 5c0166e5-4f7d-4de4-a38f-50eb5ed866eb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_covid.FECHA_SINTOMAS_DATE
+	toColumn: LocalDateTable_e196a8a3-3cab-4355-88a1-99777be175bf.Date
+
+relationship 2e6299e0-64ac-4792-bb8b-d90976fe3fb3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_covid.FECHA_DEF_DATE
+	toColumn: LocalDateTable_9fb96b51-d13d-4406-ab7e-be7832256da4.Date
+
+relationship 010b89c8-bb23-4754-b461-03dac60e6f36
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Dim_Calendario.Date
+	toColumn: LocalDateTable_24d45067-071b-4dba-afdb-0c989dafb1d7.Date
+
+relationship 1ca28c28-8862-e060-23bc-91a5b338e696
+	fromColumn: fact_covid.FECHA_INGRESO
+	toColumn: Dim_Calendario.Date
+

@@ -68,64 +68,6 @@ table DIM_Ubicacion_de_laboratorio
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	column DESC_ORIGEN
-		dataType: int64
-		formatString: 0
-		lineageTag: 4236f210-050a-484f-b5df-3fb03215859a
-		summarizeBy: sum
-		sourceColumn: DESC_ORIGEN
-
-		annotation SummarizationSetBy = Automatic
-
-	column DESC_SECTOR
-		dataType: int64
-		formatString: 0
-		lineageTag: d455f645-d608-4395-96d3-4b4d794cea94
-		summarizeBy: sum
-		sourceColumn: DESC_SECTOR
-
-		annotation SummarizationSetBy = Automatic
-
-	column DESC_OTRO_CASO
-		dataType: double
-		lineageTag: 9d8aef75-d5dd-4c58-aa1f-9b29515dc597
-		summarizeBy: sum
-		sourceColumn: DESC_OTRO_CASO
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column DESC_UCI
-		dataType: double
-		lineageTag: f64ebf56-28a0-4495-812d-93e781855e9b
-		summarizeBy: sum
-		sourceColumn: DESC_UCI
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column DESC_RESULTADO_PCR
-		dataType: double
-		lineageTag: 54b47c5d-cef8-4a97-aeec-cb960a634a08
-		summarizeBy: sum
-		sourceColumn: DESC_RESULTADO_PCR
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column DESC_RESULTADO_PCR_COINFECCION
-		dataType: double
-		lineageTag: bbed47aa-53dc-4162-9cc4-c7633545b9af
-		summarizeBy: sum
-		sourceColumn: DESC_RESULTADO_PCR_COINFECCION
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	partition DIM_Ubicacion_de_laboratorio = m
 		mode: import
 		source =

@@ -30,26 +30,6 @@ table DIM_Geografico_residencia
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	column DESC_ENTIDAD_RES
-		dataType: double
-		lineageTag: 5c66520a-5e57-45b7-bb79-1b5d8c98108d
-		summarizeBy: sum
-		sourceColumn: DESC_ENTIDAD_RES
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column DESC_MUNICIPIO_RES
-		dataType: double
-		lineageTag: f2de27b1-8cc9-439d-a8e4-68c94c24f3ce
-		summarizeBy: sum
-		sourceColumn: DESC_MUNICIPIO_RES
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	partition DIM_Geografico_residencia = m
 		mode: import
 		source =

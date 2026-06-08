@@ -30,26 +30,6 @@ table DIM_Antigeno
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	column DESC_TOMA_MUESTRA_ANTIGENO
-		dataType: double
-		lineageTag: a929aa97-b875-4b61-b63c-a6fb952046b9
-		summarizeBy: sum
-		sourceColumn: DESC_TOMA_MUESTRA_ANTIGENO
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column DESC_RESULTADO_ANTIGENO
-		dataType: double
-		lineageTag: e36aab55-bd26-4f43-85c7-0da4e1b8ef78
-		summarizeBy: sum
-		sourceColumn: DESC_RESULTADO_ANTIGENO
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	partition DIM_Antigeno = m
 		mode: import
 		source =

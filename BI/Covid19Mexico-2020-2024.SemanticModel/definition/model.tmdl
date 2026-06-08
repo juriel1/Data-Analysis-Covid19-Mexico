@@ -38,6 +38,12 @@ ref table DIM_Geografico_Nacionalidad
 ref table DIM_Indigena
 ref table DIM_Otras_caracteristicas_medicas
 ref table DIM_Ubicacion_de_laboratorio
+ref table Dim_Calendario
+ref table DateTableTemplate_17726375-5a39-4aea-a56d-cd351acfea67
+ref table LocalDateTable_ac42842a-15cf-4563-b6d8-464073d38bb5
+ref table LocalDateTable_e196a8a3-3cab-4355-88a1-99777be175bf
+ref table LocalDateTable_9fb96b51-d13d-4406-ab7e-be7832256da4
+ref table LocalDateTable_24d45067-071b-4dba-afdb-0c989dafb1d7
 
 ref cultureInfo es-MX
 
