@@ -31,9 +31,17 @@ SELECT * FROM read_parquet('{fact_path_str}', hive_partitioning = true, union_by
 print(" -> Vista 'fact_covid' vinculada con tolerancia a Schema Drift.")
 
 dimensiones = [
-    'DIM_Geografico_residencia',
+    'DIM_Antigeno',
+    'DIM_Comorbilidades_de_presion',
+    'DIM_Comorbilidades_Respiratorias',
+    'DIM_Datos_de_laboratorio',
     'DIM_Descripcion_del_paciente',
-    'DIM_Comorbilidades_Respiratorias'
+    'DIM_Geografico_informacion_paciente',
+    'DIM_Geografico_Nacionalidad',
+    'DIM_Geografico_residencia',
+    'DIM_Indigena',
+    'DIM_Otras_caracteristicas_medicas',
+    'DIM_Ubicacion_de_laboratorio'
 ]
 
 for dim in dimensiones:

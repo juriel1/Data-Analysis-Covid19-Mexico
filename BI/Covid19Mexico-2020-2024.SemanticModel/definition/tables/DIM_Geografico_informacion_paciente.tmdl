@@ -1,65 +1,65 @@
-table DIM_Geografico_residencia
-	lineageTag: 24913066-a49e-472b-9b07-c97d8251f5a5
+table DIM_Geografico_informacion_paciente
+	lineageTag: 07bab6ff-28ed-4951-b4f2-4b6560931f8f
 
-	column ID_DIM_GEOGRAFICO_RESIDENCIA
+	column ID_DIM_GEOGRAFICO_INFORMACION_PACIENTE
 		dataType: int64
 		formatString: 0
-		lineageTag: b3b8dca0-49f6-4a79-b768-36c6d8b304d3
+		lineageTag: 2c452969-3f2b-48d4-9bc0-4ab5289c8470
 		summarizeBy: none
-		sourceColumn: ID_DIM_GEOGRAFICO_RESIDENCIA
+		sourceColumn: ID_DIM_GEOGRAFICO_INFORMACION_PACIENTE
 
 		annotation SummarizationSetBy = Automatic
 
-	column ENTIDAD_RES
+	column ENTIDAD_UM
 		dataType: double
-		lineageTag: 41606d40-1c61-46fc-8821-d537bf6fb4a9
+		lineageTag: 2aa68a8e-e258-4a9d-aa09-4aca4e3fc847
 		summarizeBy: none
-		sourceColumn: ENTIDAD_RES
+		sourceColumn: ENTIDAD_UM
 
 		annotation SummarizationSetBy = Automatic
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	column MUNICIPIO_RES
+	column ENTIDAD_NAC
 		dataType: double
-		lineageTag: 71a2901c-cd99-43b1-a206-331a3fd1e20b
-		summarizeBy: sum
-		sourceColumn: MUNICIPIO_RES
+		lineageTag: b6b3c8ed-6756-42f7-91b7-1732de455533
+		summarizeBy: none
+		sourceColumn: ENTIDAD_NAC
 
 		annotation SummarizationSetBy = Automatic
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	column DESC_ENTIDAD_RES
+	column DESC_ENTIDAD_UM
 		dataType: double
-		lineageTag: 5c66520a-5e57-45b7-bb79-1b5d8c98108d
-		summarizeBy: sum
-		sourceColumn: DESC_ENTIDAD_RES
+		lineageTag: 5a7f5a5b-35eb-4166-9af4-42def965d210
+		summarizeBy: none
+		sourceColumn: DESC_ENTIDAD_UM
 
 		annotation SummarizationSetBy = Automatic
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	column DESC_MUNICIPIO_RES
+	column DESC_ENTIDAD_NAC
 		dataType: double
-		lineageTag: f2de27b1-8cc9-439d-a8e4-68c94c24f3ce
-		summarizeBy: sum
-		sourceColumn: DESC_MUNICIPIO_RES
+		lineageTag: 96ba64fd-8112-4c26-ad19-9185822f7cd8
+		summarizeBy: none
+		sourceColumn: DESC_ENTIDAD_NAC
 
 		annotation SummarizationSetBy = Automatic
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	partition DIM_Geografico_residencia = m
+	partition DIM_Geografico_informacion_paciente = m
 		mode: import
 		source =
 				let
 				    Origen = Odbc.DataSource("dsn=DSN_Covid_Lakehouse", [HierarchicalNavigation=true]),
 				    covid_lakehouse_Database = Origen{[Name="covid_lakehouse",Kind="Database"]}[Data],
 				    main_Schema = covid_lakehouse_Database{[Name="main",Kind="Schema"]}[Data],
-				    DIM_Geografico_residencia_Table = main_Schema{[Name="DIM_Geografico_residencia",Kind="Table"]}[Data]
+				    DIM_Geografico_informacion_paciente_Table = main_Schema{[Name="DIM_Geografico_informacion_paciente",Kind="Table"]}[Data]
 				in
-				    DIM_Geografico_residencia_Table
+				    DIM_Geografico_informacion_paciente_Table
 
 	annotation PBI_NavigationStepName = Navegación
 

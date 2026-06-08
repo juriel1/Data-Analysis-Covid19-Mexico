@@ -1,0 +1,143 @@
+table DIM_Ubicacion_de_laboratorio
+	lineageTag: b67a400f-283d-4400-bba1-fd1f4a00c8ce
+
+	column ID_DIM_UBICACION_DE_LABORATORIO
+		dataType: int64
+		formatString: 0
+		lineageTag: 1e4849cf-2cea-4d28-9268-2a239475c379
+		summarizeBy: none
+		sourceColumn: ID_DIM_UBICACION_DE_LABORATORIO
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORIGEN
+		dataType: int64
+		formatString: 0
+		lineageTag: 19c981b0-a61d-419e-8cd1-ebc218d3c9d6
+		summarizeBy: none
+		sourceColumn: ORIGEN
+
+		annotation SummarizationSetBy = Automatic
+
+	column SECTOR
+		dataType: int64
+		formatString: 0
+		lineageTag: 24395188-13a8-45d0-88e1-eeccdefc6bd0
+		summarizeBy: none
+		sourceColumn: SECTOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column OTRO_CASO
+		dataType: double
+		lineageTag: fd903615-801f-4690-9a41-ebbd12ff2ecd
+		summarizeBy: sum
+		sourceColumn: OTRO_CASO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column UCI
+		dataType: double
+		lineageTag: 0ada18f4-08d1-42f6-9f99-18fc8db5a2b0
+		summarizeBy: sum
+		sourceColumn: UCI
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RESULTADO_PCR
+		dataType: double
+		lineageTag: fcf8812c-182c-43f7-b4ad-b1c4ef656a62
+		summarizeBy: none
+		sourceColumn: RESULTADO_PCR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RESULTADO_PCR_COINFECCION
+		dataType: double
+		lineageTag: 3c007534-2746-436b-bf76-26fc09f6a05f
+		summarizeBy: sum
+		sourceColumn: RESULTADO_PCR_COINFECCION
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DESC_ORIGEN
+		dataType: int64
+		formatString: 0
+		lineageTag: 4236f210-050a-484f-b5df-3fb03215859a
+		summarizeBy: sum
+		sourceColumn: DESC_ORIGEN
+
+		annotation SummarizationSetBy = Automatic
+
+	column DESC_SECTOR
+		dataType: int64
+		formatString: 0
+		lineageTag: d455f645-d608-4395-96d3-4b4d794cea94
+		summarizeBy: sum
+		sourceColumn: DESC_SECTOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column DESC_OTRO_CASO
+		dataType: double
+		lineageTag: 9d8aef75-d5dd-4c58-aa1f-9b29515dc597
+		summarizeBy: sum
+		sourceColumn: DESC_OTRO_CASO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DESC_UCI
+		dataType: double
+		lineageTag: f64ebf56-28a0-4495-812d-93e781855e9b
+		summarizeBy: sum
+		sourceColumn: DESC_UCI
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DESC_RESULTADO_PCR
+		dataType: double
+		lineageTag: 54b47c5d-cef8-4a97-aeec-cb960a634a08
+		summarizeBy: sum
+		sourceColumn: DESC_RESULTADO_PCR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DESC_RESULTADO_PCR_COINFECCION
+		dataType: double
+		lineageTag: bbed47aa-53dc-4162-9cc4-c7633545b9af
+		summarizeBy: sum
+		sourceColumn: DESC_RESULTADO_PCR_COINFECCION
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition DIM_Ubicacion_de_laboratorio = m
+		mode: import
+		source =
+				let
+				    Origen = Odbc.DataSource("dsn=DSN_Covid_Lakehouse", [HierarchicalNavigation=true]),
+				    covid_lakehouse_Database = Origen{[Name="covid_lakehouse",Kind="Database"]}[Data],
+				    main_Schema = covid_lakehouse_Database{[Name="main",Kind="Schema"]}[Data],
+				    DIM_Ubicacion_de_laboratorio_Table = main_Schema{[Name="DIM_Ubicacion_de_laboratorio",Kind="Table"]}[Data]
+				in
+				    DIM_Ubicacion_de_laboratorio_Table
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

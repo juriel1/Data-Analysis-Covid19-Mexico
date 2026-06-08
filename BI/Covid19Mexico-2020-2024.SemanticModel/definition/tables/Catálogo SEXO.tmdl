@@ -5,7 +5,7 @@ table 'Catálogo SEXO'
 		dataType: int64
 		formatString: 0
 		lineageTag: e2dd0b78-75c9-4975-b673-47a1c5cdab01
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: CLAVE
 
 		annotation SummarizationSetBy = Automatic

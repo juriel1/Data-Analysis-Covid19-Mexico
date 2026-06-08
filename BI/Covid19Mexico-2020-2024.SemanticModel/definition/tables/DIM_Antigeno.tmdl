@@ -1,75 +1,65 @@
-table DIM_Descripcion_del_paciente
-	lineageTag: 4f353478-1716-453a-b2f5-8eb85db7f01c
+table DIM_Antigeno
+	lineageTag: ad638d8b-b013-4641-bb7f-273493be6466
 
-	column ID_DIM_DESCRIPCION_DEL_PACIENTE
+	column ID_DIM_ANTIGENO
 		dataType: int64
 		formatString: 0
-		lineageTag: 45feeb4d-393b-4d79-8f5f-fccd64ec8249
+		lineageTag: e1dc3744-3b6b-454a-8d6b-52f87f8badd2
 		summarizeBy: none
-		sourceColumn: ID_DIM_DESCRIPCION_DEL_PACIENTE
+		sourceColumn: ID_DIM_ANTIGENO
 
 		annotation SummarizationSetBy = Automatic
 
-	column SEXO
+	column TOMA_MUESTRA_ANTIGENO
 		dataType: double
-		lineageTag: 1f66ada3-5017-479c-b2f1-744f4275ee16
+		lineageTag: 96e37238-a168-4bc3-801b-7f0932b4b6d5
+		summarizeBy: sum
+		sourceColumn: TOMA_MUESTRA_ANTIGENO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RESULTADO_ANTIGENO
+		dataType: double
+		lineageTag: baf225bf-29dc-4a2c-bd6a-368b7a132c5d
 		summarizeBy: none
-		sourceColumn: SEXO
+		sourceColumn: RESULTADO_ANTIGENO
 
 		annotation SummarizationSetBy = Automatic
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	column EDAD
+	column DESC_TOMA_MUESTRA_ANTIGENO
 		dataType: double
-		lineageTag: 2a87c8af-e9c3-4224-a241-948005963e36
+		lineageTag: a929aa97-b875-4b61-b63c-a6fb952046b9
 		summarizeBy: sum
-		sourceColumn: EDAD
+		sourceColumn: DESC_TOMA_MUESTRA_ANTIGENO
 
 		annotation SummarizationSetBy = Automatic
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	column TIPO_PACIENTE
+	column DESC_RESULTADO_ANTIGENO
 		dataType: double
-		lineageTag: b6979bb9-20f2-452e-9f04-ffeb416ae2c1
-		summarizeBy: none
-		sourceColumn: TIPO_PACIENTE
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	column DESC_SEXO
-		dataType: double
-		lineageTag: c440d170-b3c8-4b06-8c47-60433c1f00fc
+		lineageTag: e36aab55-bd26-4f43-85c7-0da4e1b8ef78
 		summarizeBy: sum
-		sourceColumn: DESC_SEXO
+		sourceColumn: DESC_RESULTADO_ANTIGENO
 
 		annotation SummarizationSetBy = Automatic
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	column DESC_TIPO_PACIENTE
-		dataType: double
-		lineageTag: 55016bdd-edf9-447d-9eed-7f25b8aee575
-		summarizeBy: sum
-		sourceColumn: DESC_TIPO_PACIENTE
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	partition DIM_Descripcion_del_paciente = m
+	partition DIM_Antigeno = m
 		mode: import
 		source =
 				let
 				    Origen = Odbc.DataSource("dsn=DSN_Covid_Lakehouse", [HierarchicalNavigation=true]),
 				    covid_lakehouse_Database = Origen{[Name="covid_lakehouse",Kind="Database"]}[Data],
 				    main_Schema = covid_lakehouse_Database{[Name="main",Kind="Schema"]}[Data],
-				    DIM_Descripcion_del_paciente_Table = main_Schema{[Name="DIM_Descripcion_del_paciente",Kind="Table"]}[Data]
+				    DIM_Antigeno_Table = main_Schema{[Name="DIM_Antigeno",Kind="Table"]}[Data]
 				in
-				    DIM_Descripcion_del_paciente_Table
+				    DIM_Antigeno_Table
 
 	annotation PBI_NavigationStepName = Navegación
 

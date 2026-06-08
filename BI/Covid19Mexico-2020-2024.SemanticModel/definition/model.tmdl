@@ -2,6 +2,7 @@ model Model
 	culture: es-MX
 	defaultPowerBIDataSourceVersion: powerBI_V3
 	sourceQueryCulture: es-MX
+	maxParallelismPerRefresh: 1
 	dataAccessOptions
 		legacyRedirects
 		returnErrorValuesAsNull
@@ -10,13 +11,9 @@ annotation __PBI_TimeIntelligenceEnabled = 1
 
 annotation PBI_ProTooling = ["DevMode"]
 
-annotation PBI_QueryOrder = ["fact_covid","DIM_Comorbilidades_Respiratorias","DIM_Descripcion_del_paciente","DIM_Geografico_residencia","Cat CLASIFICACION_FINAL_COVID","Cat CLASIFICACION_FINAL_FLU","Catálogo de ENTIDADES","Catálogo MUNICIPIOS","Catálogo NACIONALIDAD","Catálogo ORIGEN","Catálogo RESULTADO_ANTIGENO","Catálogo RESULTADO_LAB","Catálogo RESULTADO_PCR","Catálogo SECTOR","Catálogo SEXO","Catálogo SI_NO","Catálogo TIPO_PACIENTE"]
+annotation PBI_QueryOrder = ["fact_covid","DIM_Comorbilidades_Respiratorias","DIM_Descripcion_del_paciente","DIM_Geografico_residencia","Cat CLASIFICACION_FINAL_COVID","Cat CLASIFICACION_FINAL_FLU","Catálogo de ENTIDADES","Catálogo MUNICIPIOS","Catálogo NACIONALIDAD","Catálogo ORIGEN","Catálogo RESULTADO_ANTIGENO","Catálogo RESULTADO_LAB","Catálogo RESULTADO_PCR","Catálogo SECTOR","Catálogo SEXO","Catálogo SI_NO","Catálogo TIPO_PACIENTE","DIM_Antigeno","DIM_Comorbilidades_de_presion","DIM_Datos_de_laboratorio","DIM_Geografico_informacion_paciente","DIM_Geografico_Nacionalidad","DIM_Indigena","DIM_Otras_caracteristicas_medicas","DIM_Ubicacion_de_laboratorio"]
 
 ref table fact_covid
-ref table DateTableTemplate_f473ce1d-f1f0-4ff5-ae5c-82fe85427a8f
-ref table LocalDateTable_5115502a-2532-426b-b9e1-d4d8b4e732f8
-ref table LocalDateTable_eda5d274-78bc-49a2-9f51-069271327174
-ref table LocalDateTable_d357e764-d215-4025-8bcd-75fdc90b7aef
 ref table DIM_Comorbilidades_Respiratorias
 ref table DIM_Descripcion_del_paciente
 ref table DIM_Geografico_residencia
@@ -33,6 +30,14 @@ ref table 'Catálogo SECTOR'
 ref table 'Catálogo SEXO'
 ref table 'Catálogo SI_NO'
 ref table 'Catálogo TIPO_PACIENTE'
+ref table DIM_Antigeno
+ref table DIM_Comorbilidades_de_presion
+ref table DIM_Datos_de_laboratorio
+ref table DIM_Geografico_informacion_paciente
+ref table DIM_Geografico_Nacionalidad
+ref table DIM_Indigena
+ref table DIM_Otras_caracteristicas_medicas
+ref table DIM_Ubicacion_de_laboratorio
 
 ref cultureInfo es-MX
 
