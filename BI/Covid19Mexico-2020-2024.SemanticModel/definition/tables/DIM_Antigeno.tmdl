@@ -13,7 +13,7 @@ table DIM_Antigeno
 	column TOMA_MUESTRA_ANTIGENO
 		dataType: double
 		lineageTag: 96e37238-a168-4bc3-801b-7f0932b4b6d5
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: TOMA_MUESTRA_ANTIGENO
 
 		annotation SummarizationSetBy = Automatic

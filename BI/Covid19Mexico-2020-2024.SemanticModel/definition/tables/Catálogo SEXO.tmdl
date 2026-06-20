@@ -1,10 +1,10 @@
 table 'Catálogo SEXO'
-	lineageTag: 5f017ee4-dcf2-4bcb-93ee-f2f2ba954e5b
+	lineageTag: 9355b8f5-f496-4400-bc69-099967133470
 
 	column CLAVE
 		dataType: int64
 		formatString: 0
-		lineageTag: e2dd0b78-75c9-4975-b673-47a1c5cdab01
+		lineageTag: 84337563-0149-4100-a6b0-c329187d5ace
 		summarizeBy: none
 		sourceColumn: CLAVE
 
@@ -12,7 +12,7 @@ table 'Catálogo SEXO'
 
 	column DESCRIPCIÓN
 		dataType: string
-		lineageTag: 372ffa27-7587-4205-bd93-7e86b38317ac
+		lineageTag: 30d4f852-65a0-453d-80a4-af58320618c7
 		summarizeBy: none
 		sourceColumn: DESCRIPCIÓN
 
@@ -22,12 +22,12 @@ table 'Catálogo SEXO'
 		mode: import
 		source =
 				let
-				    Origen = Excel.Workbook(File.Contents("C:\Users\jurie\Documents\Data-Analysis-Covid19-Mexico\DICCIONARIOS\240708 Catalogos.xlsx"), null, true),
-				    #"Catálogo SEXO_Sheet" = Origen{[Item="Catálogo SEXO",Kind="Sheet"]}[Data],
-				    #"Encabezados promovidos" = Table.PromoteHeaders(#"Catálogo SEXO_Sheet", [PromoteAllScalars=true]),
-				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"CLAVE", Int64.Type}, {"DESCRIPCIÓN", type text}})
+				  Origen = Excel.Workbook(File.Contents("C:\Users\jurie\Documents\Data-Analysis-Covid19-Mexico\DICCIONARIOS\240708 Catalogos.xlsx"), null, true),
+				  #"Navegación 1" = Origen{[Item = "Catálogo SEXO", Kind = "Sheet"]}[Data],
+				  #"Encabezados promovidos" = Table.PromoteHeaders(#"Navegación 1", [PromoteAllScalars = true]),
+				  #"Tipo de columna cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos", {{"CLAVE", Int64.Type}, {"DESCRIPCIÓN", type text}}, "es")
 				in
-				    #"Tipo cambiado"
+				  #"Tipo de columna cambiado"
 
 	annotation PBI_NavigationStepName = Navegación
 

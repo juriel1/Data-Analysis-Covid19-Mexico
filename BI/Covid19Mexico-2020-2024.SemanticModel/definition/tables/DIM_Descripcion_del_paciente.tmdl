@@ -33,7 +33,7 @@ table DIM_Descripcion_del_paciente
 	column TIPO_PACIENTE
 		dataType: double
 		lineageTag: b6979bb9-20f2-452e-9f04-ffeb416ae2c1
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: TIPO_PACIENTE
 
 		annotation SummarizationSetBy = Automatic

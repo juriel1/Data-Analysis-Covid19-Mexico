@@ -42,54 +42,6 @@ relationship 771eed32-8c42-0cd6-1b03-e1ab0f5536f2
 	fromColumn: fact_covid.ID_DIM_DATOS_DE_LABORATORIO
 	toColumn: DIM_Datos_de_laboratorio.ID_DIM_DATOS_DE_LABORATORIO
 
-relationship 1d3ebd11-0209-fe5b-1dd8-9cae0c204b73
-	fromColumn: DIM_Geografico_Nacionalidad.NACIONALIDAD
-	toColumn: 'Catálogo NACIONALIDAD'.CLAVE
-
-relationship bee817e6-59bd-6f20-a692-37443a7ff794
-	fromColumn: DIM_Antigeno.RESULTADO_ANTIGENO
-	toColumn: 'Catálogo RESULTADO_ANTIGENO'.CLAVE
-
-relationship 5105895d-d574-2c70-50dd-e1fa50308163
-	fromColumn: DIM_Geografico_residencia.ENTIDAD_RES
-	toColumn: 'Catálogo de ENTIDADES'.CLAVE_ENTIDAD
-
-relationship 9d3e2616-410a-4451-20e9-a4752a182d88
-	fromColumn: 'Catálogo MUNICIPIOS'.CLAVE_ENTIDAD
-	toColumn: 'Catálogo de ENTIDADES'.CLAVE_ENTIDAD
-
-relationship 0a5d296f-2e91-b37f-1cfc-88966eba43e8
-	fromColumn: DIM_Descripcion_del_paciente.SEXO
-	toColumn: 'Catálogo SEXO'.CLAVE
-
-relationship 34fdcf9f-504e-1254-fe82-8bfddbffa3b8
-	fromColumn: DIM_Descripcion_del_paciente.TIPO_PACIENTE
-	toColumn: 'Catálogo TIPO_PACIENTE'.CLAVE
-
-relationship 44449c1e-1cf3-06c6-9115-917d2534c8d3
-	fromColumn: DIM_Ubicacion_de_laboratorio.RESULTADO_PCR
-	toColumn: 'Catálogo RESULTADO_PCR'.CLAVE
-
-relationship bb109d54-0493-2df8-30db-d5fd433133da
-	fromColumn: DIM_Ubicacion_de_laboratorio.ORIGEN
-	toColumn: 'Catálogo ORIGEN'.CLAVE
-
-relationship c6b6d515-8bf0-460c-49f9-3a088d263546
-	fromColumn: DIM_Ubicacion_de_laboratorio.SECTOR
-	toColumn: 'Catálogo SECTOR'.CLAVE
-
-relationship 620e12bb-623f-6a28-23c8-ac5c8fcfb603
-	fromColumn: DIM_Datos_de_laboratorio.CLASIFICACION_FINAL_COVID
-	toColumn: 'Cat CLASIFICACION_FINAL_COVID'.CLAVE
-
-relationship 16156616-26dd-ca5b-f467-a385b0c7aadf
-	fromColumn: DIM_Datos_de_laboratorio.CLASIFICACION_FINAL_FLU
-	toColumn: 'Cat CLASIFICACION_FINAL_FLU'.CLAVE
-
-relationship 8d99dea1-7c6d-6b86-3216-cddbcb19e2cc
-	fromColumn: DIM_Datos_de_laboratorio.RESULTADO_LAB
-	toColumn: 'Catálogo RESULTADO_LAB'.CLAVE
-
 relationship ff7b4a98-e424-402d-bccd-ccdc84274b11
 	joinOnDateBehavior: datePartOnly
 	fromColumn: fact_covid.FECHA_INGRESO_DATE
@@ -113,4 +65,12 @@ relationship 010b89c8-bb23-4754-b461-03dac60e6f36
 relationship 1ca28c28-8862-e060-23bc-91a5b338e696
 	fromColumn: fact_covid.FECHA_INGRESO
 	toColumn: Dim_Calendario.Date
+
+relationship cf72cbde-c912-78fe-b135-3b5050469b1c
+	fromColumn: DIM_Geografico_residencia.ENTIDAD_RES
+	toColumn: 'Catálogo de ENTIDADES'.CLAVE_ENTIDAD
+
+relationship db4b95e7-5ce4-f59a-f9f6-56d1750b034c
+	fromColumn: DIM_Descripcion_del_paciente.SEXO
+	toColumn: 'Catálogo SEXO'.CLAVE
 

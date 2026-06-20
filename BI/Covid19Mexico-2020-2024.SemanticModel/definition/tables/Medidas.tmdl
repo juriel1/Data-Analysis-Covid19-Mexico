@@ -1,0 +1,172 @@
+table Medidas
+	lineageTag: 61afdb84-b8f0-4c55-8ca1-fea1584f3969
+
+	measure 'M Total Casos' = COUNTROWS(fact_covid)
+		formatString: 0
+		lineageTag: bfb007fb-a8f2-4324-ab0f-1e8d4f9e4a52
+
+	measure 'M Total Def' = CALCULATE(COUNTROWS(fact_covid),NOT ISBLANK(fact_covid[FECHA_DEF_DATE]))
+		formatString: 0
+		lineageTag: e51c68c6-d9dd-428c-9971-3370378bb31f
+
+	measure 'M# CARDIOVASCULAR' = CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_de_presion[CARDIOVASCULAR]=1)
+		formatString: 0
+		lineageTag: 1fb60592-5209-46f3-a67a-9fc1d6d980e1
+
+	measure 'M% CARDIOVASCULAR' = FORMAT(DIVIDE([M# CARDIOVASCULAR],COUNTROWS(fact_covid)),"%0.00")
+		lineageTag: 25c789d5-2a51-4cab-ac33-0aa4de162a70
+
+	measure 'M# DIABETES' = CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_de_presion[DIABETES]=1)
+		formatString: 0
+		lineageTag: 086e8666-22e5-43ab-bd32-0daa062942ac
+
+	measure 'M% DIABETES' = FORMAT(DIVIDE([M# DIABETES],COUNTROWS(fact_covid)),"%0.00")
+		lineageTag: dceacc8d-774b-4360-a895-0324daa510b8
+
+	measure 'M# HIPERT' = CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_de_presion[HIPERTENSION]=1)
+		formatString: 0
+		lineageTag: 8752ecd2-2371-43c9-be77-61539690aa14
+
+	measure 'M% HIPERT' = FORMAT(DIVIDE([M# HIPERT],COUNTROWS(fact_covid)),"%0.00")
+		lineageTag: 72709c36-0e01-47cc-b93a-911fa13d52c8
+
+	measure 'M# INMUNO' = CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_de_presion[INMUSUPR]=1)
+		formatString: 0
+		lineageTag: 447b0781-e4eb-499a-b8c7-94dee5e2714a
+
+	measure 'M% INMUNO' = FORMAT(DIVIDE([M# INMUNO],COUNTROWS(fact_covid)),"%0.00")
+		lineageTag: 811dec3a-1e89-4089-b239-924923195b7e
+
+	measure 'M# OBESIDAD' = CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_de_presion[OBESIDAD]=1)
+		formatString: 0
+		lineageTag: e6695de6-6f3e-4d55-9790-606718b067e0
+
+	measure 'M% OBESIDAD' = FORMAT(DIVIDE([M# OBESIDAD],COUNTROWS(fact_covid)),"%0.00")
+		lineageTag: d8dcac33-9278-4024-ac9d-b154f72d00e0
+
+	measure 'M# ASMA' = CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_Respiratorias[ASMA]=1)
+		formatString: 0
+		lineageTag: e35ac1d4-d659-4cbd-8b9a-b5b4fc8c8c96
+
+	measure 'M% ASMA' = FORMAT(DIVIDE([M# ASMA],COUNTROWS(fact_covid)),"%0.00")
+		lineageTag: 221a8c60-73c7-4fde-a52b-e8a3394da841
+
+	measure 'M# EPOC' = CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_Respiratorias[EPOC]=1)
+		formatString: 0
+		lineageTag: 850e424d-6be8-4f61-921e-e53abc64a918
+
+	measure 'M% EPOC' = FORMAT(DIVIDE([M# EPOC],COUNTROWS(fact_covid)),"%0.00")
+		lineageTag: 22cf5a08-d29a-4d04-8907-4c03d5cc565c
+
+	measure 'M# INTUBADO' = CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_Respiratorias[INTUBADO]=1)
+		formatString: 0
+		lineageTag: e91cd72f-cbc5-4d43-b39e-ec21296d6932
+
+	measure 'M% INTUBADO' = FORMAT(DIVIDE([M# INTUBADO],COUNTROWS(fact_covid)),"%0.00")
+		lineageTag: 679e68c7-9048-46b2-b400-fe1f063471a0
+
+	measure 'M# NEUMONIA' = CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_Respiratorias[NEUMONIA]=1)
+		formatString: 0
+		lineageTag: b42134bb-15f7-4792-ac22-b97395ad4357
+
+	measure 'M% NEUMONIA' = FORMAT(DIVIDE([M# NEUMONIA],COUNTROWS(fact_covid)),"%0.00")
+		lineageTag: f63d19ee-ade4-46f8-b0db-940b0656d626
+
+	measure 'M# TABAQUISMO' = CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_Respiratorias[TABAQUISMO]=1)
+		formatString: 0
+		lineageTag: 5f642d95-6d5e-4ddb-964f-ca740a172e38
+
+	measure 'M% TABAQUISMO' = FORMAT(DIVIDE([M# TABAQUISMO],COUNTROWS(fact_covid)),"%0.00")
+		lineageTag: 9e8fc736-3d34-411b-9668-fc4ff7fc002f
+
+	measure 'M Total Casos X Comorbilidad' =
+			
+			SWITCH(
+			    TablaBotones[BotonSeleccionado],
+			    "ASMA",CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_Respiratorias[ASMA]=1),
+			    "CARDIOVASCULAR",CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_de_presion[CARDIOVASCULAR]=1),
+			    "DIABETES",CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_de_presion[DIABETES]=1),
+			    "EPOC",CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_Respiratorias[EPOC]=1),
+			    "HIPERTENSION",CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_de_presion[HIPERTENSION]=1),
+			    "INMUNO",CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_de_presion[INMUSUPR]=1),
+			    "INTUBADO",CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_Respiratorias[INTUBADO]=1),
+			    "NEUMONIA",CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_Respiratorias[NEUMONIA]=1),
+			    "OBESIDAD",CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_de_presion[OBESIDAD]=1),
+			    "TABAQUISMO",CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_Respiratorias[TABAQUISMO]=1),
+			    CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_de_presion[CARDIOVASCULAR]=1)
+			)
+		formatString: 0
+		lineageTag: e4408dda-edf8-4b9a-be77-85ec473e1123
+
+	measure 'M Total Def X Comorbilidad' =
+			
+			SWITCH(
+			    TablaBotones[BotonSeleccionado],
+			    "ASMA",CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_Respiratorias[ASMA]=1,NOT ISBLANK(fact_covid[FECHA_DEF_DATE])),
+			    "CARDIOVASCULAR",CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_de_presion[CARDIOVASCULAR]=1,NOT ISBLANK(fact_covid[FECHA_DEF_DATE])),
+			    "DIABETES",CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_de_presion[DIABETES]=1,NOT ISBLANK(fact_covid[FECHA_DEF_DATE])),
+			    "EPOC",CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_Respiratorias[EPOC]=1,NOT ISBLANK(fact_covid[FECHA_DEF_DATE])),
+			    "HIPERTENSION",CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_de_presion[HIPERTENSION]=1,NOT ISBLANK(fact_covid[FECHA_DEF_DATE])),
+			    "INMUNO",CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_de_presion[INMUSUPR]=1,NOT ISBLANK(fact_covid[FECHA_DEF_DATE])),
+			    "INTUBADO",CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_Respiratorias[INTUBADO]=1,NOT ISBLANK(fact_covid[FECHA_DEF_DATE])),
+			    "NEUMONIA",CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_Respiratorias[NEUMONIA]=1,NOT ISBLANK(fact_covid[FECHA_DEF_DATE])),
+			    "OBESIDAD",CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_de_presion[OBESIDAD]=1,NOT ISBLANK(fact_covid[FECHA_DEF_DATE])),
+			    "TABAQUISMO",CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_Respiratorias[TABAQUISMO]=1,NOT ISBLANK(fact_covid[FECHA_DEF_DATE])),
+			    CALCULATE(COUNTROWS(fact_covid),DIM_Comorbilidades_de_presion[CARDIOVASCULAR]=1,NOT ISBLANK(fact_covid[FECHA_DEF_DATE]))
+			)
+		formatString: 0
+		lineageTag: de9f84ba-12d0-4699-8057-4e747f085656
+
+	measure 'M Estado max' =
+			
+			CONCATENATEX(
+			    TOPN(
+			        1,
+			        'Catálogo de ENTIDADES',
+			        [M Total Casos],
+			        DESC
+			    ),
+			    'Catálogo de ENTIDADES'[ENTIDAD_FEDERATIVA],
+			    ", "
+			)
+		lineageTag: cf40fc6f-8c64-49f3-bb52-92c4ab32ee8e
+
+	measure 'M Estado min' =
+			
+			CONCATENATEX(
+			    TOPN(
+			        1,
+			        'Catálogo de ENTIDADES',
+			        [M Total Casos],
+			        ASC
+			    ),
+			    'Catálogo de ENTIDADES'[ENTIDAD_FEDERATIVA],
+			    ", "
+			)
+		lineageTag: 29f68198-08a4-47a5-b22c-1c94cb963c98
+
+	measure 'M# INDIGENA' = CALCULATE(COUNTROWS(fact_covid),DIM_Indigena[INDIGENA]=1)
+		formatString: 0
+		lineageTag: 8105c70a-4361-4d01-82ef-693565e5fb8a
+
+	measure 'M# MIGRANTE' = CALCULATE(COUNTROWS(fact_covid),DIM_Indigena[MIGRANTE]=1)
+		formatString: 0
+		lineageTag: 860e721f-c191-40d9-a48e-b014ac105874
+
+	column Column
+		formatString: 0
+		lineageTag: 0103027a-7b0a-4d90-84e0-eac6d04f26d7
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Medidas = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 655587c590c145e29cce28a412d847b5
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

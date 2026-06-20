@@ -13,7 +13,7 @@ table DIM_Datos_de_laboratorio
 	column TOMA_MUESTRA_LAB
 		dataType: double
 		lineageTag: d297392a-f077-4689-850e-119a6194c17e
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: TOMA_MUESTRA_LAB
 
 		annotation SummarizationSetBy = Automatic

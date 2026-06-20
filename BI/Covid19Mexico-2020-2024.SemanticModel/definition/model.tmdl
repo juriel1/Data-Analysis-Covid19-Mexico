@@ -11,25 +11,12 @@ annotation __PBI_TimeIntelligenceEnabled = 1
 
 annotation PBI_ProTooling = ["DevMode"]
 
-annotation PBI_QueryOrder = ["fact_covid","DIM_Comorbilidades_Respiratorias","DIM_Descripcion_del_paciente","DIM_Geografico_residencia","Cat CLASIFICACION_FINAL_COVID","Cat CLASIFICACION_FINAL_FLU","Catálogo de ENTIDADES","Catálogo MUNICIPIOS","Catálogo NACIONALIDAD","Catálogo ORIGEN","Catálogo RESULTADO_ANTIGENO","Catálogo RESULTADO_LAB","Catálogo RESULTADO_PCR","Catálogo SECTOR","Catálogo SEXO","Catálogo SI_NO","Catálogo TIPO_PACIENTE","DIM_Antigeno","DIM_Comorbilidades_de_presion","DIM_Datos_de_laboratorio","DIM_Geografico_informacion_paciente","DIM_Geografico_Nacionalidad","DIM_Indigena","DIM_Otras_caracteristicas_medicas","DIM_Ubicacion_de_laboratorio"]
+annotation PBI_QueryOrder = ["fact_covid","DIM_Comorbilidades_Respiratorias","DIM_Descripcion_del_paciente","DIM_Geografico_residencia","DIM_Antigeno","DIM_Comorbilidades_de_presion","DIM_Datos_de_laboratorio","DIM_Geografico_informacion_paciente","DIM_Geografico_Nacionalidad","DIM_Indigena","DIM_Otras_caracteristicas_medicas","DIM_Ubicacion_de_laboratorio","Catálogo de ENTIDADES","Catálogo SEXO","TablaBotones"]
 
 ref table fact_covid
 ref table DIM_Comorbilidades_Respiratorias
 ref table DIM_Descripcion_del_paciente
 ref table DIM_Geografico_residencia
-ref table 'Cat CLASIFICACION_FINAL_COVID'
-ref table 'Cat CLASIFICACION_FINAL_FLU'
-ref table 'Catálogo de ENTIDADES'
-ref table 'Catálogo MUNICIPIOS'
-ref table 'Catálogo NACIONALIDAD'
-ref table 'Catálogo ORIGEN'
-ref table 'Catálogo RESULTADO_ANTIGENO'
-ref table 'Catálogo RESULTADO_LAB'
-ref table 'Catálogo RESULTADO_PCR'
-ref table 'Catálogo SECTOR'
-ref table 'Catálogo SEXO'
-ref table 'Catálogo SI_NO'
-ref table 'Catálogo TIPO_PACIENTE'
 ref table DIM_Antigeno
 ref table DIM_Comorbilidades_de_presion
 ref table DIM_Datos_de_laboratorio
@@ -44,6 +31,10 @@ ref table LocalDateTable_ac42842a-15cf-4563-b6d8-464073d38bb5
 ref table LocalDateTable_e196a8a3-3cab-4355-88a1-99777be175bf
 ref table LocalDateTable_9fb96b51-d13d-4406-ab7e-be7832256da4
 ref table LocalDateTable_24d45067-071b-4dba-afdb-0c989dafb1d7
+ref table 'Catálogo de ENTIDADES'
+ref table Medidas
+ref table 'Catálogo SEXO'
+ref table TablaBotones
 
 ref cultureInfo es-MX
 

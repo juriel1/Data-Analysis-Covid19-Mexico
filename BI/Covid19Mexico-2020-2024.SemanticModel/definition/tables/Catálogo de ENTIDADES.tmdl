@@ -1,10 +1,10 @@
 table 'Catálogo de ENTIDADES'
-	lineageTag: 6ef180d5-b36d-4f0e-8359-5a2921e6852b
+	lineageTag: 21a5ac9b-f0b2-486a-b880-1854d89c4904
 
 	column CLAVE_ENTIDAD
 		dataType: int64
 		formatString: 0
-		lineageTag: fade3ecd-ba9b-430a-ba51-4798f97566bd
+		lineageTag: c8c3ac42-b9ea-4dba-8d8a-d13f09f6073c
 		summarizeBy: none
 		sourceColumn: CLAVE_ENTIDAD
 
@@ -12,8 +12,7 @@ table 'Catálogo de ENTIDADES'
 
 	column ENTIDAD_FEDERATIVA
 		dataType: string
-		lineageTag: e08e0e22-6a97-4de0-bf74-d3cfbd14078e
-		dataCategory: StateOrProvince
+		lineageTag: b5166881-5950-48b9-99b2-99789e490a31
 		summarizeBy: none
 		sourceColumn: ENTIDAD_FEDERATIVA
 
@@ -21,7 +20,7 @@ table 'Catálogo de ENTIDADES'
 
 	column ABREVIATURA
 		dataType: string
-		lineageTag: 7ec6087e-901f-4d26-b464-f9e4376cea2e
+		lineageTag: 11583b6d-fbfb-4dcc-9484-33fb1351150a
 		summarizeBy: none
 		sourceColumn: ABREVIATURA
 
@@ -31,12 +30,12 @@ table 'Catálogo de ENTIDADES'
 		mode: import
 		source =
 				let
-				    Origen = Excel.Workbook(File.Contents("C:\Users\jurie\Documents\Data-Analysis-Covid19-Mexico\DICCIONARIOS\240708 Catalogos.xlsx"), null, true),
-				    #"Catálogo de ENTIDADES_Sheet" = Origen{[Item="Catálogo de ENTIDADES",Kind="Sheet"]}[Data],
-				    #"Encabezados promovidos" = Table.PromoteHeaders(#"Catálogo de ENTIDADES_Sheet", [PromoteAllScalars=true]),
-				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"CLAVE_ENTIDAD", Int64.Type}, {"ENTIDAD_FEDERATIVA", type text}, {"ABREVIATURA", type text}})
+				  Origen = Excel.Workbook(File.Contents("C:\Users\jurie\Documents\Data-Analysis-Covid19-Mexico\DICCIONARIOS\240708 Catalogos.xlsx"), null, true),
+				  #"Navegación 1" = Origen{[Item = "Catálogo de ENTIDADES", Kind = "Sheet"]}[Data],
+				  #"Encabezados promovidos" = Table.PromoteHeaders(#"Navegación 1", [PromoteAllScalars = true]),
+				  #"Tipo de columna cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos", {{"CLAVE_ENTIDAD", Int64.Type}, {"ENTIDAD_FEDERATIVA", type text}, {"ABREVIATURA", type text}}, "es")
 				in
-				    #"Tipo cambiado"
+				  #"Tipo de columna cambiado"
 
 	annotation PBI_NavigationStepName = Navegación
 

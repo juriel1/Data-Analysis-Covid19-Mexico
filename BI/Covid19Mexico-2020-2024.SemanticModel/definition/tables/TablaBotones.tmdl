@@ -1,0 +1,48 @@
+table TablaBotones
+	lineageTag: dee5fbac-ac7c-4558-a658-5f6c09a4ede1
+
+	measure BotonSeleccionado = SELECTEDVALUE('TablaBotones'[Categoria], "Cardio Vascular")
+		lineageTag: 5d27a4e5-1c73-4077-b63d-f4507c5ffc47
+
+	measure Prueba_Calculo =
+			
+			SWITCH(
+			    [BotonSeleccionado],
+			    "CARDIOVASCULAR", 100,
+			    "DIABETES", 500,
+			    "Opción C", 1000,
+			    0   // Valor por defecto si no hay nada seleccionado
+			)
+		formatString: 0
+		lineageTag: 1d493b0b-43eb-4879-b060-018a55c2003e
+
+	column Categoria
+		dataType: string
+		lineageTag: ee73eefe-7fe4-4481-bdac-d6342b627069
+		summarizeBy: none
+		sourceColumn: Categoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column Id
+		dataType: int64
+		formatString: 0
+		lineageTag: ee18ff42-6dae-413f-bdef-af087fc2a1b0
+		summarizeBy: count
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition TablaBotones = m
+		mode: import
+		source =
+				let
+				  Origen = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("Lcs7DgMhDEXRvbieIpN/SgOWYingCYY0I/a/jTFWynv03r5DxJpYfqixf7DCAiuMZYfEGKiRGpwd3rxRbVSUpRheHLnkXsTy6imBlBMmg5sDakaLuwdtEi0e/2frAdP8Ph0K9SyF5/zl0DDgt7PmuVlPMMYB", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Categoria = _t, Id = _t]),
+				  #"Tipo de columna cambiado" = Table.TransformColumnTypes(Origen, {{"Id", Int64.Type}, {"Categoria", type text}}, "es")
+				in
+				    #"Tipo de columna cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

@@ -1,10 +1,6 @@
 table fact_covid
 	lineageTag: 36310c93-73a1-4fb3-b926-d6de7ca875c5
 
-	measure Total_defunciones = CALCULATE(COUNTROWS(fact_covid),fact_covid[FECHA_DEF]<>"9999-99-99")
-		formatString: 0
-		lineageTag: b95415ec-eff2-4331-b3aa-777093147aaa
-
 	column FECHA_ACTUALIZACION
 		dataType: string
 		lineageTag: a460a5ba-4ef1-49a9-8a29-52bdb0d35d62
